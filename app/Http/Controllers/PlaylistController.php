@@ -45,7 +45,7 @@ class PlaylistController extends Controller
      */
     public function show(Playlist $playlist)
     {
-        $allSongs = Song::all();
+        $songs = Song::all();
         return view('playlist.show', ['playlist' => $playlist]);
     }
 

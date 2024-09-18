@@ -90,7 +90,7 @@ class SongController extends Controller
      */
     public function destroy($id)
     {
-        $song = Song::findOrFail($id);
+        $song = Song::where('id', $id);
 
         $song->delete();
 
