@@ -17,6 +17,11 @@ class PlaylistController extends Controller
         return view('playlist.index', compact('playlists'));
     }
 
+    public function create(){
+        return view('playlist.create');
+
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -41,7 +46,7 @@ class PlaylistController extends Controller
     public function show(Playlist $playlist)
     {
         $allSongs = Song::all();
-        return view('playlist.show');
+        return view('playlist.show', ['playlist' => $playlist]);
     }
 
     /**
@@ -59,7 +64,7 @@ class PlaylistController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update($id, Request $request)
 {
     // Validate the request data
     $request->validate([
@@ -81,7 +86,10 @@ class PlaylistController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy() {
+    public function destroy($id) {
+        $playlist= Playlist::findOrFail($id);
+
+        $playlist->delete();
         return redirect('/playlist')->with('success', 'Playlist deleted successfully!');
     }
 
