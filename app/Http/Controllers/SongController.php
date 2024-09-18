@@ -10,7 +10,7 @@ class SongController extends Controller
     
     public function index()
     {
-        $songs = Song::all();
+        $playlist->songs()->show($request->all());
         return view('song.index', compact('songs'));
     }
 
